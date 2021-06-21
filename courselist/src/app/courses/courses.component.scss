@@ -4,6 +4,14 @@ app-courses{
         div.imageholder{
             height: 100%;
             img{height: 100%;
+        
+        button{
+            background: none;
+        }
+        button.favorite{
+            
+            mat-icon{color:red}
+        }
 
     }
 }

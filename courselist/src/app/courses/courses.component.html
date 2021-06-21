@@ -5,7 +5,7 @@
       <img src={{course.instructor_image_url}} /></div>
       <div mat-line>{{course.title}}</div>
       <div mat-line> {{course.instructor_name}} </div>
-      <button mat-icon-button  > 
+      <button mat-icon-button [ngClass]="{'favorite': course.favorite==true}" >
         <mat-icon class="mat-24">thumb_up_alt</mat-icon>
       </button>    </mat-list-item>
   </mat-list> 
