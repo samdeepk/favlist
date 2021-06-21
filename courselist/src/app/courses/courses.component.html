@@ -1,13 +1,17 @@
 
 <mat-list>
-    <mat-list-item *ngFor="let course of courses">
+    <mat-list-item *ngFor="let course of courses" >
+        
         <div class="imageholder">
       <img src={{course.instructor_image_url}} /></div>
       <div mat-line>{{course.title}}</div>
       <div mat-line> {{course.instructor_name}} </div>
-      <button mat-icon-button [ngClass]="{'favorite': course.favorite==true}" >
+      <button mat-icon-button
+      [ngClass]="{' favorite ' : course.favorite===true}"
+       (click)="toggleLike(course.id, course.favorite)">
         <mat-icon class="mat-24">thumb_up_alt</mat-icon>
       </button>    </mat-list-item>
   </mat-list> 
+
 
 

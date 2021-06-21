@@ -21,6 +21,7 @@ export class CoursesComponent implements OnInit {
   ];
   baseUrl = "https://mc-dev-5.herokuapp.com"
   coursesPath = "/jsonapi/v1/courses"
+  favs = "/jsonapi/v1/favorite"
   email = "sandeep@koduri.in"
   constructor(private http: HttpClient) {
      
@@ -30,19 +31,29 @@ export class CoursesComponent implements OnInit {
     this.getCourses().subscribe((data: Course[]) => this.courses = data
      
       );
-    //
   }
   getCourses() {
     return this.http.get<Course[]>(this.baseUrl+this.coursesPath+"?email="+this.email);
+  
   }
 
-  // toggleLike(course){
-  //   course
-  //   return this.http.get<Course[]>(this.baseUrl+this.coursesPath+"?email="+this.email);
+  toggleLike(id:number, current:boolean){
+    if (current){
+      console.log("deleting")
+      return this.http.delete<any>(this.baseUrl+this.favs+"?email="+this.email+"&course_id="+id).subscribe((s) => {
+        console.log(s);
+      });
+  }
+  else{
 
-  // }
+    return this.http.post<any>(this.baseUrl+this.favs, {
 
-  get example() {return JSON.stringify(this.courses)};
+      email:this.email,
+      course_id:id
+    }).subscribe((s) => {
+      console.log(s);
+    });
+  }
 
-
+  }
 }
